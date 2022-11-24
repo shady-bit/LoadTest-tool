@@ -1,5 +1,6 @@
 // ignore: file_names
 import 'package:bbs_utilv2/screens/bizUrlUtilScreen.dart';
+import 'package:bbs_utilv2/screens/powerShellScriptScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/config.dart';
 import 'package:get/get.dart';
@@ -12,22 +13,8 @@ class DashboardScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    final ZoomDrawerController z = ZoomDrawerController();
 
     return
-        //   ZoomDrawer(
-        //     controller: z,
-        //     borderRadius: 24,
-        //     style: DrawerStyle.style3,
-        //     // showShadow: true,
-        //     openCurve: Curves.fastOutSlowIn,
-        //     slideWidth: MediaQuery.of(context).size.width * 0.15,
-        //     duration: const Duration(milliseconds: 500),
-        //     // angle: 0.0,
-        //     menuBackgroundColor: Colors.indigo,
-        //     mainScreen:  const BizUrlUtilScreen(),
-        //     menuScreen: Theme(
-        //     data: ThemeData.dark(), child: const MenuScreen()
         Scaffold(
       body: Container(
         padding: const EdgeInsets.all(30),
@@ -58,7 +45,9 @@ class DashboardScreen extends StatelessWidget {
                 size: size,
                 title: "Powershell Script",
                 logoImage: "images/file.png",
-                onPress: () {},
+                onPress: () {
+                  Get.to(() => const PowerShellScriptScreen());
+                },
               ),
               const SizedBox(
                 width: 15,

@@ -24,13 +24,24 @@ class BizUrlUtilScreen extends StatelessWidget {
           final provider = Provider.of<BizUrlProvider>(context);
           return Scaffold(
               appBar: AppBar(
-                title: Row(children: [
-                  Text("Bizurl Util",style: GoogleFonts.ubuntu(textStyle: const TextStyle()),),
-                  const SizedBox(width: 8,),
-                  Hero(tag: "BizUrl", child: Image.asset("images/api.png",height: 20,),)
-                ],)
-               
-              ),
+                  title: Row(
+                children: [
+                  Text(
+                    "Bizurl Util",
+                    style: GoogleFonts.ubuntu(textStyle: const TextStyle()),
+                  ),
+                  const SizedBox(
+                    width: 8,
+                  ),
+                  Hero(
+                    tag: "BizUrl",
+                    child: Image.asset(
+                      "images/api.png",
+                      height: 20,
+                    ),
+                  )
+                ],
+              )),
               body: Stack(
                 children: [
                   Container(
@@ -45,17 +56,21 @@ class BizUrlUtilScreen extends StatelessWidget {
                           width: size.width * 0.2,
                           child: TextField(
                             controller: provider.serverIpInput,
-                            decoration: WidgetStyles.textFieldDecor("Server Ip"),
+                            decoration:
+                                WidgetStyles.textFieldDecor("Server Ip"),
                           ),
                         ),
-                        const SizedBox(height: 8,),
+                        const SizedBox(
+                          height: 8,
+                        ),
                         Row(
                           children: [
                             SizedBox(
                               width: size.width * 0.2,
                               child: TextField(
                                 controller: provider.statusCodeInput,
-                                decoration: WidgetStyles.textFieldDecor("Status Code"),
+                                decoration:
+                                    WidgetStyles.textFieldDecor("Status Code"),
                               ),
                             ),
                             const SizedBox(
@@ -93,36 +108,48 @@ class BizUrlUtilScreen extends StatelessWidget {
                           children: [
                             Expanded(
                               child: IncidentSequenceWidget(
-                                                      incidentSequence: provider.statusCodeList.join(' ⮕ '),
-                                                    ),
+                                incidentSequence:
+                                    provider.statusCodeList.join(' ⮕ '),
+                              ),
                             ),
-                            const SizedBox(width: 5,),
-                        Container(
-                          padding: EdgeInsets.all(8),
-                          height: size.height*0.2,
-                          width: size.width*0.3,
-                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(6),color: Colors.grey.shade900),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-
-                            Text("Total teminal imported: ${provider.totalTerminalImported}"),
-                            Text("Total requests count: ${provider.totalTerminalImported*provider.statusCodeList.length}"),
-                            Text("Total request sent: ${provider.totalRequestSent}"),
-                            Text("Failed requests: ${provider.totalFailedRequest}"),
-
-                          ]),
-                        )
+                            const SizedBox(
+                              width: 5,
+                            ),
+                            Container(
+                              padding: EdgeInsets.all(8),
+                              height: size.height * 0.2,
+                              width: size.width * 0.3,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(6),
+                                  color: Colors.grey.shade900),
+                              child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                        "Total teminal imported: ${provider.totalTerminalImported}"),
+                                    Text(
+                                        "Total requests count: ${provider.totalTerminalImported * provider.statusCodeList.length}"),
+                                    Text(
+                                        "Total request sent: ${provider.totalRequestSent}"),
+                                    Text(
+                                        "Failed requests: ${provider.totalFailedRequest}"),
+                                  ]),
+                            )
                           ],
                         ),
-                        const SizedBox(height: 10,)
-,                        Text(
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Text(
                           "Import you Terminal Ids (.csv)",
                           style: GoogleFonts.ubuntu(
-                              textStyle:
-                                  const TextStyle(fontStyle: FontStyle.italic,color: Colors.grey)),
+                              textStyle: const TextStyle(
+                                  fontStyle: FontStyle.italic,
+                                  color: Colors.grey)),
                         ),
-                        const SizedBox(height: 10,),
+                        const SizedBox(
+                          height: 10,
+                        ),
                         ElevatedButton.icon(
                           icon: const Icon(Icons.file_copy_outlined),
                           label: const Text('Import Terminals'),
@@ -132,7 +159,9 @@ class BizUrlUtilScreen extends StatelessWidget {
                                       horizontal: 10, vertical: 11))),
                           onPressed: () => provider.loadCsvFromStorage(),
                         ),
-                        const SizedBox(height: 10,),
+                        const SizedBox(
+                          height: 10,
+                        ),
                         Row(
                           children: [
                             Expanded(
@@ -171,12 +200,12 @@ class BizUrlUtilScreen extends StatelessWidget {
                                   children: <Widget>[
                                     Padding(
                                       padding: const EdgeInsets.all(8),
-                                      child: Text(
-                                        displayTime,
-                                        style: GoogleFonts.ubuntu(textStyle: const TextStyle(
-                                            fontSize: 40,
-                                            fontWeight: FontWeight.bold),)
-                                      ),
+                                      child: Text(displayTime,
+                                          style: GoogleFonts.ubuntu(
+                                            textStyle: const TextStyle(
+                                                fontSize: 40,
+                                                fontWeight: FontWeight.bold),
+                                          )),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.all(8),
@@ -208,6 +237,4 @@ class BizUrlUtilScreen extends StatelessWidget {
               ));
         });
   }
-
-  
 }

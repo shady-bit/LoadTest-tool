@@ -1,4 +1,5 @@
 import 'package:bbs_utilv2/providers/bizurlUtilProvider.dart';
+import 'package:bbs_utilv2/providers/powerShellScriptProvider.dart';
 import 'package:bbs_utilv2/screens/bizUrlUtilScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -46,6 +47,9 @@ class MyApp extends StatelessWidget {
         providers: [
           Provider<BizUrlProvider>(
             create: (context) => BizUrlProvider(),
+          ),
+          Provider<PowerShellScriptProvider>(
+            create: (context) => PowerShellScriptProvider(),
           )
         ],
         child: const DashboardScreen(),
