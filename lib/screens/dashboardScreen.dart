@@ -43,7 +43,7 @@ class DashboardScreen extends StatelessWidget {
               ),
               ToolWidget(
                 size: size,
-                title: "Powershell Script",
+                title: "Script Util",
                 logoImage: "images/file.png",
                 onPress: () {
                   Get.to(() => const PowerShellScriptScreen());

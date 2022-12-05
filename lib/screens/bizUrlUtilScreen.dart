@@ -151,7 +151,7 @@ class BizUrlUtilScreen extends StatelessWidget {
                           height: 10,
                         ),
                         ElevatedButton.icon(
-                          icon: const Icon(Icons.file_copy_outlined),
+                          icon: const Icon(Icons.file_download),
                           label: const Text('Import Terminals'),
                           style: const ButtonStyle(
                               padding: MaterialStatePropertyAll(

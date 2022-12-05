@@ -1,5 +1,3 @@
-// ignore_for_file: unnecessary_brace_in_string_interps
-
 import 'dart:convert';
 import 'dart:io';
 import 'package:csv/csv.dart';
@@ -8,14 +6,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:path_provider/path_provider.dart';
 
 
-class PowerShellScriptProvider with ChangeNotifier{
+class PowerShellScriptProvider with ChangeNotifier {
   late TextEditingController serverIpInput = TextEditingController();
   late TextEditingController statusCodeInput = TextEditingController();
+  double scriptWrittenProgress = 0;
   late String importFilePath = "";
   late List<List<dynamic>> terminalList = [];
   late List<String> statusCodeList = [];
   bool isReadytoRun = false;
-
+  String scriptCommand = "powershell -ExecutionPolicy Bypass -File .\\Documents\\RezyScript.ps1";
 
   void updateServerIpField(String value) {
     serverIpInput.text = value;
@@ -76,12 +75,30 @@ class PowerShellScriptProvider with ChangeNotifier{
     return false;
   }
 
-  void createScript() async{
+  void createScript() async {
+    int count = 0;
     final directory = await getApplicationDocumentsDirectory();
-    String filename = DateTime.now().millisecondsSinceEpoch.toString();
-    debugPrint(directory.toString());
-    File f1 = File("${directory} \$ ${filename}.txt");
-    f1.writeAsStringSync("Good");
+    debugPrint(directory.path);
+    if (isValid()) {
+      File f1 = File('${directory.path}\\RezyScript.ps1');
+      int tts = statusCodeList.length * terminalList.length;
+      for (int i = 0; i < statusCodeList.length; i++) {
+        for (int j = 0; j < terminalList.length; j++) {
+          debugPrint(
+              "terminal: ${terminalList[j]} statuscode: ${statusCodeList[i]}");
+          try {
+            f1.writeAsStringSync(
+                "Invoke-WebRequest 'https://random-data-api.com/api/v2/users'\n",
+                mode: FileMode.append);
+          } catch (e) {
+            debugPrint(e.toString());
+          }
+          count++;
+          scriptWrittenProgress = count/tts;
+        }
+      }
+    }
+    notifyListeners();
   }
-
+ 
 }
