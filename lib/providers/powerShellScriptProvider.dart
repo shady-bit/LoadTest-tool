@@ -84,11 +84,11 @@ class PowerShellScriptProvider with ChangeNotifier {
       int tts = statusCodeList.length * terminalList.length;
       for (int i = 0; i < statusCodeList.length; i++) {
         for (int j = 0; j < terminalList.length; j++) {
-          debugPrint(
-              "terminal: ${terminalList[j]} statuscode: ${statusCodeList[i]}");
+          // debugPrint(
+          //     "terminal: ${terminalList[j]} statuscode: ${statusCodeList[i]}");
           try {
             f1.writeAsStringSync(
-                "Invoke-WebRequest 'https://random-data-api.com/api/v2/users'\n",
+                "Invoke-WebRequest 'https://${serverIpInput.text}/incident-service/status/${terminalList[j][0]}/${statusCodeList[i]}/load-test/load-test/load-test'\n",
                 mode: FileMode.append);
           } catch (e) {
             debugPrint(e.toString());

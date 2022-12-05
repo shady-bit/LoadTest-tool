@@ -7,7 +7,7 @@ class WidgetStyles{
         hintText: lableText,
         hintStyle: GoogleFonts.sourceCodePro(fontSize: 13, color: Colors.white),
         filled: true,
-        // fillColor: Color(0xff535c68),
+        fillColor: Color(0xff2f3640),
         contentPadding: const EdgeInsets.symmetric(horizontal: 8, vertical: 0),
         border: const OutlineInputBorder(
             borderSide: BorderSide.none,

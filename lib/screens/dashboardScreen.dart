@@ -16,6 +16,7 @@ class DashboardScreen extends StatelessWidget {
 
     return
         Scaffold(
+          backgroundColor: Color(0xff2f3542),
       body: Container(
         padding: const EdgeInsets.all(30),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -23,7 +24,7 @@ class DashboardScreen extends StatelessWidget {
             "All tools",
             style: GoogleFonts.ubuntu(
                 textStyle:
-                    const TextStyle(fontSize: 24, fontWeight: FontWeight.w400)),
+                    const TextStyle(fontSize: 24, fontWeight: FontWeight.w400,color: Colors.white)),
           ),
           const SizedBox(
             height: 20,

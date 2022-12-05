@@ -1,6 +1,5 @@
 import 'package:bbs_utilv2/providers/bizurlUtilProvider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:stop_watch_timer/stop_watch_timer.dart';
@@ -14,6 +13,8 @@ class BizUrlUtilScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TextStyle textStyle = const TextStyle(color: Colors.white,fontWeight: FontWeight.w400);
+
     final ButtonStyle style = ElevatedButton.styleFrom(
         textStyle: const TextStyle(fontSize: 20),
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10));
@@ -23,7 +24,9 @@ class BizUrlUtilScreen extends StatelessWidget {
         builder: (context, child) {
           final provider = Provider.of<BizUrlProvider>(context);
           return Scaffold(
+            backgroundColor: const Color(0xff57606f),
               appBar: AppBar(
+                backgroundColor: const Color(0xff2f3640),
                   title: Row(
                 children: [
                   Text(
@@ -55,6 +58,7 @@ class BizUrlUtilScreen extends StatelessWidget {
                         SizedBox(
                           width: size.width * 0.2,
                           child: TextField(
+                            style: const TextStyle(color: Colors.white),
                             controller: provider.serverIpInput,
                             decoration:
                                 WidgetStyles.textFieldDecor("Server Ip"),
@@ -68,6 +72,7 @@ class BizUrlUtilScreen extends StatelessWidget {
                             SizedBox(
                               width: size.width * 0.2,
                               child: TextField(
+                                style: const TextStyle(color: Colors.white),
                                 controller: provider.statusCodeInput,
                                 decoration:
                                     WidgetStyles.textFieldDecor("Status Code"),
@@ -116,7 +121,7 @@ class BizUrlUtilScreen extends StatelessWidget {
                               width: 5,
                             ),
                             Container(
-                              padding: EdgeInsets.all(8),
+                              padding: const EdgeInsets.all(8),
                               height: size.height * 0.2,
                               width: size.width * 0.3,
                               decoration: BoxDecoration(
@@ -126,29 +131,19 @@ class BizUrlUtilScreen extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                        "Total teminal imported: ${provider.totalTerminalImported}"),
+                                        "Total teminal imported: ${provider.totalTerminalImported}",style: textStyle),
                                     Text(
-                                        "Total requests count: ${provider.totalTerminalImported * provider.statusCodeList.length}"),
+                                        "Total requests count: ${provider.totalTerminalImported * provider.statusCodeList.length}",style: textStyle,),
                                     Text(
-                                        "Total request sent: ${provider.totalRequestSent}"),
+                                        "Total request sent: ${provider.totalRequestSent}",style: textStyle,),
                                     Text(
-                                        "Failed requests: ${provider.totalFailedRequest}"),
+                                        "Failed requests: ${provider.totalFailedRequest}",style: textStyle,),
                                   ]),
                             )
                           ],
                         ),
                         const SizedBox(
-                          height: 10,
-                        ),
-                        Text(
-                          "Import you Terminal Ids (.csv)",
-                          style: GoogleFonts.ubuntu(
-                              textStyle: const TextStyle(
-                                  fontStyle: FontStyle.italic,
-                                  color: Colors.grey)),
-                        ),
-                        const SizedBox(
-                          height: 10,
+                          height: 15,
                         ),
                         ElevatedButton.icon(
                           icon: const Icon(Icons.file_download),
@@ -160,7 +155,7 @@ class BizUrlUtilScreen extends StatelessWidget {
                           onPressed: () => provider.loadCsvFromStorage(),
                         ),
                         const SizedBox(
-                          height: 10,
+                          height: 15,
                         ),
                         Row(
                           children: [
@@ -182,7 +177,7 @@ class BizUrlUtilScreen extends StatelessWidget {
                                         itemBuilder: ((context, index) =>
                                             provider.logsView[index]))
                                     : const Center(
-                                        child: Text("No logs yet 🙃"),
+                                        child: Text("No logs yet 🙃",style: TextStyle(color: Colors.white),),
                                       ),
                               ),
                             ),
@@ -204,6 +199,7 @@ class BizUrlUtilScreen extends StatelessWidget {
                                           style: GoogleFonts.ubuntu(
                                             textStyle: const TextStyle(
                                                 fontSize: 40,
+                                                color: Colors.white,
                                                 fontWeight: FontWeight.bold),
                                           )),
                                     ),
@@ -213,6 +209,7 @@ class BizUrlUtilScreen extends StatelessWidget {
                                         value.toString(),
                                         style: const TextStyle(
                                             fontSize: 16,
+                                            color: Colors.white,
                                             fontFamily: 'Helvetica',
                                             fontWeight: FontWeight.w400),
                                       ),

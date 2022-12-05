@@ -19,7 +19,9 @@ class PowerShellScriptScreen extends StatelessWidget {
         builder: (context, child) {
           final provider = Provider.of<PowerShellScriptProvider>(context);
           return Scaffold(
+            backgroundColor: Color(0xff57606f),
               appBar: AppBar(
+                backgroundColor: Color(0xff2f3640),
                   title: Row(
                 children: [
                   const Text("Script Util"),
@@ -48,6 +50,7 @@ class PowerShellScriptScreen extends StatelessWidget {
                           SizedBox(
                             width: size.width * 0.2,
                             child: TextField(
+                              style: TextStyle(color: Colors.white),
                               controller: provider.serverIpInput,
                               decoration:
                                   WidgetStyles.textFieldDecor("Server Ip"),
@@ -62,6 +65,7 @@ class PowerShellScriptScreen extends StatelessWidget {
                               SizedBox(
                                 width: size.width * 0.2,
                                 child: TextField(
+                                   style: TextStyle(color: Colors.white),
                                   controller: provider.statusCodeInput,
                                   decoration: WidgetStyles.textFieldDecor(
                                       "Status Code"),
@@ -123,7 +127,7 @@ class PowerShellScriptScreen extends StatelessWidget {
                             "Command to run script",
                             style: GoogleFonts.ubuntu(
                                 textStyle: const TextStyle(
-                                    fontWeight: FontWeight.w500, fontSize: 17)),
+                                    fontWeight: FontWeight.w500, fontSize: 17,color: Colors.white)),
                           ),
                           const SizedBox(
                             height: 10,
@@ -150,11 +154,11 @@ class PowerShellScriptScreen extends StatelessWidget {
                                       backgroundColor: Colors.blueGrey,
                                       content: Text(
                                         "Copied 😀!! ${provider.scriptCommand} ",
-                                        style: TextStyle(color: Colors.white),
+                                        style: const TextStyle(color: Colors.white),
                                       ),
                                     ));
                                   },
-                                  icon: const Icon(Icons.copy)),
+                                  icon: const Icon(Icons.copy,color: Colors.white,)),
                             ],
                           ),
                           const SizedBox(
@@ -165,9 +169,9 @@ class PowerShellScriptScreen extends StatelessWidget {
                             lineHeight: 20.0,
                             percent: provider.scriptWrittenProgress,
                             animation: true,
-                            center: Text("${provider.scriptWrittenProgress*100}% "),
+                            center: Text("${provider.scriptWrittenProgress*100}% ",style: TextStyle(color: Colors.white),),
                             barRadius: const Radius.circular(5),
-                            backgroundColor: Colors.grey.shade700,
+                            backgroundColor: Color(0xff2f3542),
                             progressColor: Colors.blueAccent,
                           ),
                         ],

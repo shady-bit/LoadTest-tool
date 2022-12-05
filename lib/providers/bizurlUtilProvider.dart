@@ -20,7 +20,7 @@ class BizUrlProvider with ChangeNotifier {
   late List<String> statusCodeList = [];
   bool isReadytoRun = false;
   late List<Widget> logsView = [];
-  final StopWatchTimer stopWatchTimer = StopWatchTimer(); 
+  final StopWatchTimer stopWatchTimer = StopWatchTimer();
 
   void updateServerIpField(String value) {
     serverIpInput.text = value;
@@ -89,21 +89,28 @@ class BizUrlProvider with ChangeNotifier {
     for (int i = 0; i < statusCodeList.length; i++) {
       for (int j = 0; j < terminalList.length; j++) {
         debugPrint(
-            "terminal: ${terminalList[j]} statuscode: ${statusCodeList[i]}");
+            "https://${serverIpInput.text}/incident-service/status/${terminalList[j][0]}/${statusCodeList[i]}/load-test/load-test/load-test");
         try {
-          var response = await client.get(Uri.https(
-              'random-data-api.com', 'api/v2/users'));
+          // var response = await client.get(Uri.https(
+          //     'random-data-api.com', 'api/v2/users'));
+          // var response = await client.post(Uri.pa('$serverIpInput',
+          //     'incident-service/status/${terminalList[j]}//${statusCodeList[i]}/load-test/load-test/load-test'));
+          var response = await client.post(Uri.parse('https://${serverIpInput.text}/incident-service/status/${terminalList[j][0]}/${statusCodeList[i]}/load-test/load-test/load-test'));
           logText = "${response.statusCode} : ${response.request}";
           debugPrint(logText);
           if (response.statusCode == 200 || response.statusCode == 202) {
             ++totalRequestSent;
             logsView.add(Text(
               logText,
-              style: GoogleFonts.sourceCodePro(textStyle: const TextStyle(color: Colors.greenAccent,fontSize: 12,)),
+              style: GoogleFonts.sourceCodePro(
+                  textStyle: const TextStyle(
+                color: Colors.greenAccent,
+                fontSize: 12,
+              )),
             ));
             _scrollDown();
             notifyListeners();
-          }else{
+          } else {
             ++totalFailedRequest;
           }
         } catch (e) {
@@ -111,15 +118,13 @@ class BizUrlProvider with ChangeNotifier {
         }
       }
     }
-     stopWatchTimer.onStopTimer();
-     notifyListeners();
+    stopWatchTimer.onStopTimer();
+    notifyListeners();
   }
 
   void _scrollDown() {
     SchedulerBinding.instance.addPostFrameCallback((_) {
-    scrollController.jumpTo(scrollController.position.maxScrollExtent);
+      scrollController.jumpTo(scrollController.position.maxScrollExtent);
     });
   }
-
- 
 }
